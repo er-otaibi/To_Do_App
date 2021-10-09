@@ -38,6 +38,25 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
+    
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.miDelete ) {
+            var itemsDeleted = 0
+            for(i in myList){
+                if(i.checked){itemsDeleted++}
+            }
+
+            if(itemsDeleted > 0){
+                Toast.makeText(this, "$itemsDeleted items deleted", Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, "No items selected", Toast.LENGTH_LONG).show()
+            }
+            rvAdapter.deleteItems()
+            RV.adapter?.notifyDataSetChanged()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     fun myTasks(){
         val dialogBuilder = AlertDialog.Builder(this)
