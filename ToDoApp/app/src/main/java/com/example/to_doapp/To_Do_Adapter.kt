@@ -32,4 +32,9 @@ class To_Do_Adapter (private val dailyTasks: ArrayList<taskModel>): RecyclerView
 
     }
     override fun getItemCount() = dailyTasks.size
+    
+     fun deleteItems(){
+        dailyTasks.removeAll{ item -> item.checked }
+        notifyDataSetChanged()
+    }
 }
